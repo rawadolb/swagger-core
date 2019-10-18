@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.core.jackson.ModelResolver;
+import io.swagger.v3.oas.integration.afklm.Reader;
 import io.swagger.v3.oas.integration.api.ObjectMapperProcessor;
 import io.swagger.v3.oas.integration.api.OpenAPIConfiguration;
 import io.swagger.v3.oas.integration.api.OpenApiConfigurationLoader;
@@ -229,21 +230,7 @@ public class GenericOpenApiContext<T extends GenericOpenApiContext> implements O
             Class cls = getClass().getClassLoader().loadClass(openApiConfiguration.getReaderClass());
             reader = (OpenApiReader) cls.newInstance();
         } else {
-            reader = new OpenApiReader() {
-
-                OpenAPIConfiguration openApiConfiguration;
-
-                @Override
-                public void setConfiguration(OpenAPIConfiguration openApiConfiguration) {
-                    this.openApiConfiguration = openApiConfiguration;
-                }
-
-                @Override
-                public OpenAPI read(Set<Class<?>> classes, Map<String, Object> resources) {
-                    OpenAPI openApi = openApiConfiguration.getOpenAPI();
-                    return openApi;
-                }
-            };
+            reader = new Reader();
         }
         reader.setConfiguration(openApiConfiguration);
         return reader;

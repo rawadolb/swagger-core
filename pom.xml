@@ -314,6 +314,7 @@
         <module>modules/swagger-jaxrs2</module>
         <module>modules/swagger-jaxrs2-servlet-initializer</module>
         <module>modules/swagger-maven-plugin</module>
+        <module>modules/af-custom-reader</module>
 
     </modules>
     <reporting>

@@ -73,7 +73,7 @@ public class SwaggerMojo extends AbstractMojo {
         setDefaultsIfMissing(config);
 
         try {
-            GenericOpenApiContextBuilder builder = new JaxrsOpenApiContextBuilder()
+            GenericOpenApiContextBuilder builder = new GenericOpenApiContextBuilder()
                     .openApiConfiguration(config);
             if (StringUtils.isNotBlank(contextId)) {
                 builder.ctxId(contextId);
